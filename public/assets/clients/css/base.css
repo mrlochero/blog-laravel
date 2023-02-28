@@ -1,0 +1,27 @@
+:root {
+    --white-color:#fff;
+    --black-color:#000;
+    --text-color: rgb(12, 12, 12);
+    --green-color:rgb(48 215 153);
+}
+
+*{
+    box-sizing: inherit;
+}
+
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing:border-box;
+    
+}
+ul,li {
+    list-style: none;
+}
+ul{
+    padding: 0;
+}
+a{
+    text-decoration: none;
+}
