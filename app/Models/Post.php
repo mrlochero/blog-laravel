@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use DB;
+
+use App\Models\Category;
 
 class Post extends Model
 {
-    use HasFactory;
-
     protected $table = 'posts';
-    protected $primarykey = 'id';
+
+    public function getCategory()
+    {
+        return $this->hasOne(Category::class, 'id', 'id_category');
+    }
 }

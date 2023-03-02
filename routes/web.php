@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeBlogController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AdminController;
+
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,4 +56,19 @@ Route::prefix('/post')
         Route::get('/delete{id}', [PostController::class, 'deleteData'])->name(
             'delete'
         );
+    });
+
+// Admin
+
+Route::prefix('/admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/createPost', [AdminController::class, 'createPost'])->name(
+            'createPost'
+        );
+        Route::get('/showListPost', [
+            AdminController::class,
+            'showListPost',
+        ])->name('showListPost');
     });

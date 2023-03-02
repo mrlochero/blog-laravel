@@ -14,5 +14,5 @@ class Users extends Model
 
     protected $fillable = ['name', 'password', 'email'];
 
-    protected $timestamps = false;
+    public $timestamps = false;
 }
