@@ -23,22 +23,6 @@ use App\Models\Post;
 Route::get('/', [HomeBlogController::class, 'index']);
 Route::get('/posts', [PostsController::class, 'index']);
 
-// Category
-// Route::prefix('/category')
-//     ->name('category.')
-//     ->group(function () {
-//         Route::get('/{id}', [CategoryController::class, 'index'])->name(
-//             'index'
-//         );
-//         Route::get('/blog', [CategoryController::class, 'blog'])->name('blog');
-//         Route::get('/laravel', [CategoryController::class, 'laravel'])->name(
-//             'laravel'
-//         );
-//         Route::get('/php', [CategoryController::class, 'php'])->name('php');
-//         Route::get('/html', [CategoryController::class, 'html'])->name('html');
-//         Route::get('/css', [CategoryController::class, 'css'])->name('css');
-//     });
-
 // Post
 Route::prefix('/post')
     ->name('post.')
@@ -71,4 +55,31 @@ Route::prefix('/admin')
             AdminController::class,
             'showListPost',
         ])->name('showListPost');
+    });
+
+// User Authentication
+
+Route::prefix('/User')
+    ->name('User.')
+    ->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name(
+            'register'
+        );
+    });
+
+// Category
+Route::prefix('/category')
+    ->name('category.')
+    ->group(function () {
+        Route::get('/{id}', [CategoryController::class, 'index'])->name(
+            'index'
+        );
+        Route::get('/blog', [CategoryController::class, 'blog'])->name('blog');
+        Route::get('/laravel', [CategoryController::class, 'laravel'])->name(
+            'laravel'
+        );
+        Route::get('/php', [CategoryController::class, 'php'])->name('php');
+        Route::get('/html', [CategoryController::class, 'html'])->name('html');
+        Route::get('/css', [CategoryController::class, 'css'])->name('css');
     });
