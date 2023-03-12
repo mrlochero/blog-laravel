@@ -1,4 +1,4 @@
-<form method = "POST" action="{{route("user.register.add")}}" >
+<form method = "POST" action="{{route('user.register.add')}}" >
     @csrf
       <div class="container">
         <h1>Đăng Ký</h1>
@@ -7,9 +7,9 @@
         <hr>
         
         <div class="block-input">
-        <label for="username"><b>Tên đăng nhập</b></label>
-        <input type="text" placeholder="Nhập Tên đăng nhập" name="username" value="{{old('username')}}">
-          @error('username')
+        <label for="name"><b>Tên đăng nhập</b></label>
+        <input type="text" placeholder="Nhập Tên đăng nhập" name="name" value="{{old('name')}}">
+          @error('name')
           <span style="color:red;">{{$message}}</span>
           @enderror
         </div>  
@@ -48,4 +48,4 @@
       </div>
     </form>
 
-    <link rel="stylesheet" href="{{asset('clients/css/authentication.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/clients/css/authentication.css')}}">

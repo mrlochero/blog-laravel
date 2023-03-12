@@ -2,84 +2,51 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Users;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    // view register
+    public function register()
     {
         return view('authentication.register');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    // create register
+    public function registerAdd(UserRequest $request)
     {
-        //
+        $data = $request->all();
+        $data = array_slice($data, 1, -1);
+
+        $data['password'] = Hash::make($request->password);
+
+        $createUser = Users::create($data);
+        if ($createUser) {
+            return redirect()
+                ->route('user.login')
+                ->with('msg', 'Đăng ký thành công');
+        } else {
+            return back()->with('msg', 'Đăng ký lỗi');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function show(User $user)
+    // view login
+    public function login()
     {
-        //
+        return view('authentication.login');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(User $user)
+    //check login
+    public function loginCheck(UserRequest $request)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, User $user)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        //
+        return 1;
+        // dd(1);
+        // $data['name'] = $request->name;
+        // $data['password'] = $request->password;
+        // dd($data);
+        // $check = Auth::attempt($data);
     }
 }

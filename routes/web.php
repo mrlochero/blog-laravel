@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeBlogController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
 
 use App\Models\Post;
 
@@ -59,27 +60,18 @@ Route::prefix('/admin')
 
 // User Authentication
 
-Route::prefix('/User')
-    ->name('User.')
+Route::prefix('/user')
+    ->name('user.')
     ->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('index');
-        Route::get('/create', [UserController::class, 'create'])->name(
+        Route::get('/register', [UserController::class, 'register'])->name(
             'register'
         );
-    });
+        Route::post('/register', [UserController::class, 'registerAdd'])->name(
+            'register.add'
+        );
 
-// Category
-Route::prefix('/category')
-    ->name('category.')
-    ->group(function () {
-        Route::get('/{id}', [CategoryController::class, 'index'])->name(
-            'index'
+        Route::get('/login', [UserController::class, 'login'])->name('login');
+        Route::post('/login', [UserController::class, 'loginCheck'])->name(
+            'login.check'
         );
-        Route::get('/blog', [CategoryController::class, 'blog'])->name('blog');
-        Route::get('/laravel', [CategoryController::class, 'laravel'])->name(
-            'laravel'
-        );
-        Route::get('/php', [CategoryController::class, 'php'])->name('php');
-        Route::get('/html', [CategoryController::class, 'html'])->name('html');
-        Route::get('/css', [CategoryController::class, 'css'])->name('css');
     });
