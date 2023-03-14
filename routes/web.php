@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeBlogController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
 
 use App\Models\Post;
 
@@ -75,3 +76,6 @@ Route::prefix('/user')
             'login.check'
         );
     });
+
+// Category
+Route::get('/category/{id}', [CategoryController::class, 'index']);
