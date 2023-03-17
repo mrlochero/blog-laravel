@@ -4,7 +4,7 @@
     <div class="title_category">
         <a href="/" class="title_category--a">Trang chủ</a>
         <span>/</span>
-        <a href="" class="title_category--a">VPS</a>
+        <a style="cursor: text" class="title_category--a">{{$listPosts->getCategory->content}}</a>     
         <span>/</span>
         <span>{{$listPosts->title}}</span>
     </div>    

@@ -3,6 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeBlogController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CategoryController;
+
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,22 +24,6 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', [HomeBlogController::class, 'index']);
 Route::get('/posts', [PostsController::class, 'index']);
-
-// Category
-// Route::prefix('/category')
-//     ->name('category.')
-//     ->group(function () {
-//         Route::get('/{id}', [CategoryController::class, 'index'])->name(
-//             'index'
-//         );
-//         Route::get('/blog', [CategoryController::class, 'blog'])->name('blog');
-//         Route::get('/laravel', [CategoryController::class, 'laravel'])->name(
-//             'laravel'
-//         );
-//         Route::get('/php', [CategoryController::class, 'php'])->name('php');
-//         Route::get('/html', [CategoryController::class, 'html'])->name('html');
-//         Route::get('/css', [CategoryController::class, 'css'])->name('css');
-//     });
 
 // Post
 Route::prefix('/post')
@@ -54,3 +43,39 @@ Route::prefix('/post')
             'delete'
         );
     });
+
+// Admin
+
+Route::prefix('/admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/', [AdminController::class, 'index'])->name('index');
+        Route::get('/createPost', [AdminController::class, 'createPost'])->name(
+            'createPost'
+        );
+        Route::get('/showListPost', [
+            AdminController::class,
+            'showListPost',
+        ])->name('showListPost');
+    });
+
+// User Authentication
+
+Route::prefix('/user')
+    ->name('user.')
+    ->group(function () {
+        Route::get('/register', [UserController::class, 'register'])->name(
+            'register'
+        );
+        Route::post('/register', [UserController::class, 'registerAdd'])->name(
+            'register.add'
+        );
+
+        Route::get('/login', [UserController::class, 'login'])->name('login');
+        Route::post('/login', [UserController::class, 'loginCheck'])->name(
+            'login.check'
+        );
+    });
+
+// Category
+Route::get('/category/{id}', [CategoryController::class, 'index']);

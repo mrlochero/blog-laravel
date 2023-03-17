@@ -24,14 +24,15 @@ class UserRequest extends FormRequest
     public function rules()
     {
         return [
-            'username' => 'required|unique:users|min:3|max:12',
+            'name' => 'required|unique:users|min:3|max:12',
             'email' => 'required|unique:users|email|max:255',
-            'password' => 'required|max:12|confirmed',
+            'password' => 'required|max:12',
             'password_confirmation' => 'required|max:12',
         ];
     }
 
-    public function messages() {
+    public function messages()
+    {
         return [
             'required' => 'chưa nhập :attribute ',
             'min' => ':attribute tối thiểu :min Ký Tự',
@@ -40,17 +41,16 @@ class UserRequest extends FormRequest
             'unique' => ':attribute Đã Tồn Tại',
             'confirmed' => ':attribute không khớp.',
             'max' => ':attribute tối đa:max Ký Tự',
-            
         ];
     }
 
-    public function attributes() {
+    public function attributes()
+    {
         return [
-            'username' =>  'Tên Đăng Nhập',
-            'email' => 'Gmail', 
+            'name' => 'Tên Đăng Nhập',
+            'email' => 'Gmail',
             'password' => 'Mật khẩu',
             'password_confirmation' => 'Mật khẩu',
-            
         ];
     }
 }

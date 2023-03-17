@@ -7,8 +7,8 @@
     </div>
 
     <div class="nav__form--right">
-        <a class="hover nav__form--login" href="">Đăng Nhập</a>
-        <a class="hover nav__form--register" href="">Đăng Ký</a>
+        <a class="hover nav__form--login" href="{{route('user.login')}}">Đăng Nhập</a>
+        <a class="hover nav__form--register" href="{{route('user.register')}}">Đăng Ký</a>
     </div>
 </nav>
 

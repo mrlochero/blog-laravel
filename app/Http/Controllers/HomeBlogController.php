@@ -7,12 +7,20 @@ use App\Models\Post;
 
 class HomeBlogController extends Controller
 {
-    public $data = [];
-
     public function index()
     {
-        $this->data['title'] = 'Lê Vĩnh Lộc Blog';
-        $this->data['listPosts'] = Post::paginate(4);
-        return view('pages.home', $this->data);
+        $data['title'] = 'Lê Vĩnh Lộc Blog';
+        $data['listPosts'] = Post::paginate(4);
+        return view('pages.home', $data);
+    }
+
+    public function getCategory($id = 0)
+    {
+        $postAll = post::where('id_category', $id);
+
+        $data['title'] = 'Lê Vĩnh Lộc Blog';
+        $data['listPosts'] = $postAll->paginate(4);
+
+        return view('pages.home', $data);
     }
 }
